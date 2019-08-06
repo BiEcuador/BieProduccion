@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using BieProduccion.Models;
@@ -40,5 +41,35 @@ namespace BieProduccion.Services
             }
         }
 
+        public async Task<OrdersResponse> GetOrdenByProducto(
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            string token)
+        {
+            try
+            {
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                return JsonConvert.DeserializeObject<OrdersResponse>(result);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace BieProduccion.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private string _password;
         private bool _isRunning;
@@ -17,9 +18,14 @@ namespace BieProduccion.ViewModels
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
+            _navigationService = navigationService;
             _apiService = apiService;
             Title = "Bie Producción";
             IsEnabled = true;
+
+            //TODO: Delete those lines
+            Email = "demo";
+            Password = "ZGVtbw==";
         }
 
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(Login));
@@ -68,7 +74,11 @@ namespace BieProduccion.ViewModels
             };
 
             var url = App.Current.Resources["UrlAPI"].ToString();
-            var response = await _apiService.AuthenticateAsync(url, "/api", "/Authentication/Authenticate", request);
+            var response = await _apiService.AuthenticateAsync(
+                url, 
+                "/api",
+                "/Authentication/Authenticate", 
+                request);
 
             IsRunning = false;
             IsEnabled = true;
@@ -80,7 +90,12 @@ namespace BieProduccion.ViewModels
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Ok", "Vamos bien", "Acceptar");
+            var parameters = new NavigationParameters
+            {
+                { "Token", response }
+            };
+
+            await _navigationService.NavigateAsync("OrdersPage", parameters);
         }
     }
 }
