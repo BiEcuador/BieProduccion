@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using BieProduccion.ViewModels;
+using Xamarin.Forms;
 
 namespace BieProduccion.Views
 {
@@ -7,6 +8,11 @@ namespace BieProduccion.Views
         public OrderPage()
         {
             InitializeComponent();
+        }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OrderPageViewModel.GetInstance().ChangeEntry(e.NewTextValue);
         }
     }
 }

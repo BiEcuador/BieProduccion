@@ -26,6 +26,8 @@
                 IsRunning="{Binding IsRunning}"/>
             <Button
                 BorderRadius="23"
+                BackgroundColor="Navy"
+                TextColor="White"
                 Command="{Binding LoginCommand}"
                 HeightRequest="46"
                 IsEnabled="{Binding IsEnabled}"

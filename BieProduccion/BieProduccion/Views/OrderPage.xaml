@@ -5,5 +5,96 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BieProduccion.Views.OrderPage"
              Title="{Binding Title}">
+
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label 
+                Text="Picking"/>
+            <Entry 
+                TextChanged="Entry_TextChanged"
+                Text="{Binding Picking}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Pallet"
+                    VerticalOptions="Center"/>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    FontSize="Large"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding Pallet}"/>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    IsVisible="{Binding HasPallet}"
+                    WidthRequest="40"
+                    Source="check"/>
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Operador"
+                    VerticalOptions="Center"/>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    FontSize="Large"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding Operador}"/>
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    WidthRequest="40"
+                    IsVisible="{Binding HasOperador}"
+                    Source="check"/>
+                
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Tipo Producto"
+                    VerticalOptions="Center"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    FontSize="Large"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding TipoProducto}"/>
+                <Image
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    WidthRequest="40"
+                    IsVisible="{Binding HasTipoProducto}"
+                    Source="check"/>
+            </Grid>
+            <ActivityIndicator
+                VerticalOptions="CenterAndExpand"
+                IsRunning="{Binding IsRunning}"/>
+            <Button
+                BackgroundColor="Navy"
+                TextColor="White"
+                BorderRadius="23"
+                Command="{Binding StartCommand}"
+                HeightRequest="46"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Empezar"/>
+        </StackLayout>
+    </ScrollView>
   
 </ContentPage>
