@@ -28,6 +28,7 @@ namespace BieProduccion
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<OrdersPage, OrdersPageViewModel>();
+            containerRegistry.RegisterForNavigation<OrderPage, OrderPageViewModel>();
         }
     }
 }

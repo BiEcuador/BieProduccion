@@ -21,5 +21,7 @@ namespace BieProduccion.Models
 
         [JsonProperty("ordenEstado")]
         public long OrdenEstado { get; set; }
+
+        public string NumPedidoAndCliente => $"{NumPedido} ({Cliente})";
     }
 }

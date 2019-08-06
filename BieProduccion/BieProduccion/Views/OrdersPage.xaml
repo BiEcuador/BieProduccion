@@ -5,5 +5,30 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BieProduccion.Views.OrdersPage"
              Title="{Binding Title}">
-  
+
+    <StackLayout Padding="10">
+        <ListView
+            HasUnevenRows="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            ItemsSource="{Binding Orders}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                Text="{Binding Size}"
+                                TextColor="Black"/>
+                            <Label
+                                Text="{Binding NumPedidoAndCliente}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectOrderCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
