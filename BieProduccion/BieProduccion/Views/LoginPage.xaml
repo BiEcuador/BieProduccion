@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="BieProduccion.Views.LoginPage"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label 
+                HorizontalOptions="Center"
+                Text="Login" 
+                TextColor="Black"
+                FontSize="Large"/>
+            <Entry
+                Keyboard="Email"
+                Text="{Binding Email}" 
+                Placeholder="Email*"/>
+            <Entry 
+                Text="{Binding Password}" 
+                Placeholder="Password*" 
+                IsPassword="True"/>
+            <ActivityIndicator
+                VerticalOptions="CenterAndExpand"
+                IsRunning="{Binding IsRunning}"/>
+            <Button
+                BorderRadius="23"
+                Command="{Binding LoginCommand}"
+                HeightRequest="46"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Iniciar Sesión"/>
+        </StackLayout>
+    </ScrollView>
+    
+ </ContentPage>
